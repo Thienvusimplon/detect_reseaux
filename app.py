@@ -12,7 +12,7 @@ def load_image(image_file):
     return img
 
 image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg", "JPG"])
-model = torch.hub.load('Thienvusimplon/detect_reseaux', 'custom', path='best.pt', force_reload=True, skip_validation=True ) 
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt', force_reload=True, skip_validation=True ) 
 parseq = torch.hub.load('baudm/parseq', 'parseq', pretrained=True).eval()
 img_transform = SceneTextDataModule.get_transform(parseq.hparams.img_size)
 number = 1
