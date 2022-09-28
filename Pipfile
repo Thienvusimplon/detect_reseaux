@@ -30,6 +30,7 @@ psutil = "*"
 thop = ">=0.1.1"
 pipenv = "*"
 streamlit = "*"
+opencv-python-headless = "*"
 
 [dev-packages]
 ipykernel = "*"
