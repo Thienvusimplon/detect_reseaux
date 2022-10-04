@@ -4,6 +4,7 @@ from strhub.data.module import SceneTextDataModule
 import os
 import numpy as np
 import streamlit as st
+import shutil
 
 st.title("Detect réseau")
 
@@ -39,3 +40,4 @@ if image_file != None:
         st.write('Decoded confidence = {}'.format(confidence[0]))
         number +=1
     st.image(Image.fromarray(predictions.render()[0]))
+    shutil.rmtree('runs/')
