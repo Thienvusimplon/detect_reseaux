@@ -39,8 +39,6 @@ if image_file != None:
         st.subheader(f"Crop {crop_number}")
         st.write("Couleur détecté :", label_confidence[0])
         st.write("Score de confiance couleur: ", label_confidence[1]) 
-
-        # Affichage des centres d'intérêt 
         afficher_crop_img = cv2.cvtColor(predictions.crop()[i]["im"], cv2.COLOR_BGR2RGB)
         st.image(afficher_crop_img)
 
