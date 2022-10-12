@@ -146,3 +146,8 @@ cython_debug/
 
 # IDE
 .idea/
+
+chantier_a_b.pt
+couleur.pt
+detect_numbers_3.pt
+
