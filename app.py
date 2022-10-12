@@ -10,10 +10,6 @@ import pandas as pd
 
 st.title("Detect réseaux")
 
-"""def load_image(image_file):
-    img = Image.open(image_file)
-    return img"""
-
 # Chargement des modèles
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt', force_reload=True, skip_validation=True ) 
 parseq = torch.hub.load('baudm/parseq', 'parseq', pretrained=True).eval()
@@ -24,7 +20,7 @@ image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg", "JPG"])
 
 # Traitement de l'image lorsqu'elle est chargée
 if image_file != None:
-    
+
     # Recherche des centres d'intérêt + detection de couleur
     predictions = model(Image.open(image_file))
 
