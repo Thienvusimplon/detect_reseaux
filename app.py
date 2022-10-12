@@ -25,7 +25,7 @@ crop_number = 1
 
 if image_file != None:
     predictions = model(load_image(image_file))
-    st.write(predictions.pandas().xyxy[0])
+    #st.write(predictions.pandas().xyxy[0])
 
     df = pd.DataFrame(predictions.pandas().xyxy[0])
     index = len(predictions.crop()) - 1
@@ -49,17 +49,14 @@ if image_file != None:
         pred = logits.softmax(-1)
         label, confidence = parseq.tokenizer.decode(pred)
         st.write('Détection chiffre = {}'.format(label[0]))
-        st.write('Score de confiance du chiffre détecté = {}'.format(confidence)) 
-          
+        st.write('Score de confiance du chiffre détecté = {}'.format(np.mean(confidence[0].detach().numpy())))
         df.at[index, "numero"] = label[0]
-        #Confidence du numéro à extraire
-        #st.write(type(confidence[0]))
-        #df.at[i, "confidence numero"] = confidence[0]
+        df.at[index, "confidence numero"] = np.mean(confidence[0].detach().numpy())
 
         index -= 1
         crop_number += 1
     
-    df = df[["xmin", "xmax", "ymin", "ymax", "x_center", "y_center", "confiance couleur", "couleur", "numero"]]
+    df = df[["xmin", "xmax", "ymin", "ymax", "x_center", "y_center", "couleur", "confiance couleur", "numero", "confidence numero"]]
     st.image(Image.fromarray(predictions.render()[0]))
     st.write(df)
     shutil.rmtree('runs/')
