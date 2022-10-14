@@ -12,6 +12,7 @@ st.title("Detect réseaux")
 
 # Chargement des modèles
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt', force_reload=True, skip_validation=True ) 
+model.conf = 0.50
 parseq = torch.hub.load('baudm/parseq', 'parseq', pretrained=True).eval()
 img_transform = SceneTextDataModule.get_transform(parseq.hparams.img_size)
 
